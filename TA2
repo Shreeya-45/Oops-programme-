@@ -1,0 +1,179 @@
+
+1.1. Implement the Classes and Objects in Java. 
+class Student {
+    String name;
+    int rollNo;
+
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll No: " + rollNo);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s = new Student();
+        s.name = "Alice";
+        s.rollNo = 101;
+        s.display();
+    }
+}
+
+2. Implement a program in java with Constructors and destructors. Also implement the concept of overloading. 
+class Box {
+    int length, breadth;
+
+    // Constructor overloading
+    Box() {
+        length = breadth = 0;
+    }
+
+    Box(int l, int b) {
+        length = l;
+        breadth = b;
+    }
+
+    void display() {
+        System.out.println("Area: " + (length * breadth));
+    }
+
+    // finalize acts like destructor
+    protected void finalize() {
+        System.out.println("Object is destroyed");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Box b1 = new Box();
+        Box b2 = new Box(5, 4);
+        b1.display();
+        b2.display();
+        b1 = null;
+        b2 = null;
+        System.gc(); // Suggest garbage collection
+    }
+}
+3.Demomstrate use of inheritance 
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.sound();
+    }
+}
+4.implement a concept of interface in java 
+interface Drawable {interface Drawable {
+    void draw();
+}
+
+class Circle implements Drawable {
+    public void draw() {
+        System.out.println("Drawing a Circle");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Drawable d = new Circle();
+        d.draw();
+    }
+}
+5.Implement package and import that package in program.
+In mypack/Message.java:
+
+package mypack;
+
+public class Message {
+    public void show() {
+        System.out.println("Hello from custom package!");
+    }
+}
+
+In Main.java:
+
+import mypack.Message;
+
+public class Main {
+    public static void main(String[] args) {
+        Message m = new Message();
+        m.show();
+    }
+}
+6.Demonstrate use of exception handling mechanism.
+public class Main {
+    public static void main(String[] args) {
+        try {
+            int a = 10, b = 0;
+            int result = a / b;
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            System.out.println("This block always executes");
+        }
+    }
+}
+
+7.Apply concept of generics class and method.
+  class GenericBox<T> {
+    T value;
+
+    void set(T val) {
+        value = val;
+    }
+
+    T get() {
+        return value;
+    }
+}
+
+public class Main {
+    public static <T> void printArray(T[] arr) {
+        for (T element : arr) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        GenericBox<Integer> intBox = new GenericBox<>();
+        intBox.set(123);
+        System.out.println("Value: " + intBox.get());
+
+        String[] names = {"Alice", "Bob"};
+        printArray(names);
+    }
+}
+8.Apply file handling concepts in java.
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FileWriter fw = new FileWriter("output.txt");
+            fw.write("Hello, this is a file write example.");
+            fw.close();
+
+            FileReader fr = new FileReader("output.txt");
+            int ch;
+            while ((ch = fr.read()) != -1) {
+                System.out.print((char) ch);
+            }
+            fr.close();
+        } catch (IOException e) {
+            System.out.println("File error: " + e.getMessage());
+        }
+    }
+}
